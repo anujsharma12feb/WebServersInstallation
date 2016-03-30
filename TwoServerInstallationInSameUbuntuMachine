@@ -1,0 +1,9 @@
+This files show the process to have both the servers running in same machine:
+
+Go to "/etc/nginx/sites-available"
+and then modify the host file which should listen to a different port.
+look for the conf file or default file.
+
+In the file change listen: 80 to the port you want to listen to change.
+
+And reload the service: service nginx reload
