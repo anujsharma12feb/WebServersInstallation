@@ -1,0 +1,32 @@
+# ------------------------------------------------------------------
+# Author: Anuj Sharma
+# Date: 30th March 2016
+# ------------------------------------------------------------------
+#
+
+Follow the below commands to update and install the required packages:
+sudo apt-get update
+sudo apt-get install apache2
+sudo mkdir /etc/apache2/ssl
+sudo a2enmod ssl
+sudo a2enmod cgi
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+
+It will ask for few details to enter:
+Country:
+Name:
+Organization:
+Email-id:
+
+Fill the details and see, we have two files now in  "/etc/apache2/ssl/"
+apache.key
+apache.cert
+
+Opne the /etc/apache2/sites-available/default-ssl.conf and add the below lines to it:
+SSLCertificateFile /etc/apache2/ssl/apache.crt
+SSLCertificateKeyFile /etc/apache2/ssl/apache.key
+
+Start the service:
+sudo a2ensite default-ssl.conf
+
+And finally we have https://localhost running.
